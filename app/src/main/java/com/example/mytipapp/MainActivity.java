@@ -5,13 +5,18 @@ import androidx.fragment.app.FragmentManager;
 
 import android.os.Bundle;
 import android.provider.MediaStore;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.View;
+import android.view.inputmethod.EditorInfo;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import org.w3c.dom.Text;
 
@@ -30,7 +35,7 @@ public class MainActivity extends AppCompatActivity implements CustomTipPercentD
     private TextView splitTipsToBePaid;
     private TextView totalTipsToBePaid;
     private float totalBill = 0;
-    private float tipPercentValue = 0;
+    private int tipPercentValue = 20;
     private int numPeopleSplit = 0;
 
     @Override
@@ -41,7 +46,36 @@ public class MainActivity extends AppCompatActivity implements CustomTipPercentD
         // Find all the views on app startup
         totalBillAmount = (EditText) findViewById(R.id.bill_total);
 
+        totalBillAmount.setOnEditorActionListener(new TextView.OnEditorActionListener() {
+            @Override
+            public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
+                if (actionId == EditorInfo.IME_ACTION_DONE) {
+                    calculateSplitTipTotal(totalBillAmount);
+                }
+                return false;
+            }
+        });
+
         currentTipView = (TextView) findViewById(R.id.currentTip);
+
+        currentTipView.addTextChangedListener(new TextWatcher() {
+
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                calculateSplitTipTotal(totalBillAmount);
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+
+            }
+        });
+
         tip15Percent = (RadioButton) findViewById(R.id.radioButton1);
         tip18Percent = (RadioButton) findViewById(R.id.radioButton2);
         tip20Percent = (RadioButton) findViewById(R.id.radioButton3);
@@ -52,6 +86,10 @@ public class MainActivity extends AppCompatActivity implements CustomTipPercentD
         totalBillToBePaid = (TextView) findViewById(R.id.total_amount_number);
         splitTipsToBePaid = (TextView) findViewById(R.id.tip_split_amount_number);
         totalTipsToBePaid = (TextView) findViewById(R.id.tip_total_amount_number);
+
+        // Set the default starting tip value
+        String tipString = Integer.toString(tipPercentValue) + "%";
+        currentTipView.setText(tipString);
     }
 
     // Method to update the chosen Tip Percentage
@@ -60,22 +98,25 @@ public class MainActivity extends AppCompatActivity implements CustomTipPercentD
         String newTip;
         if (tip15Percent.isChecked()) {
             tipPercentValue = 15;
-            tipString = Float.toString(tipPercentValue);
+            tipString = Integer.toString(tipPercentValue);
             newTip = tipString + "%";
             Log.v("radioButtons", "15% Tip choice was detected");
             currentTipView.setText(newTip);
+            //calculateSplitTipTotal(totalBillAmount);
         } else if (tip18Percent.isChecked()) {
             tipPercentValue = 18;
-            tipString = Float.toString(tipPercentValue);
+            tipString = Integer.toString(tipPercentValue);
             newTip = tipString + "%";
             Log.v("radioButtons", "18% Tip choice was detected");
             currentTipView.setText(newTip);
+            //calculateSplitTipTotal(totalBillAmount);
         } else if (tip20Percent.isChecked()) {
             tipPercentValue = 20;
-            tipString = Float.toString(tipPercentValue);
+            tipString = Integer.toString(tipPercentValue);
             newTip = tipString + "%";
             Log.v("radioButtons", "20% Tip choice was detected");
             currentTipView.setText(newTip);
+            //calculateSplitTipTotal(totalBillAmount);
         } else if (tipOtherPercent.isChecked()) {
             showCustomTipDialog(view);
         }
@@ -90,12 +131,14 @@ public class MainActivity extends AppCompatActivity implements CustomTipPercentD
             numPeopleSplit -= 1;
             splitNumString = Integer.toString(numPeopleSplit);
             splitNumOfPeople.setText(splitNumString);
+            calculateSplitTipTotal(totalBillAmount);
         }
 
         if (view.getId() == R.id.plus_split_button & numPeopleSplit < 20) {
             numPeopleSplit += 1;
             splitNumString = Integer.toString(numPeopleSplit);
             splitNumOfPeople.setText(splitNumString);
+            calculateSplitTipTotal(totalBillAmount);
         }
     }
 
@@ -113,7 +156,14 @@ public class MainActivity extends AppCompatActivity implements CustomTipPercentD
 
         // get the total bill entered
         String totalBillString = totalBillAmount.getText().toString();
-        totalBill = Float.parseFloat(totalBillString);
+
+        // Start with $0 total if no bill amount has been entered
+        if(totalBillString.matches("")) {
+            totalBill = 0;
+        } else {
+            totalBill = Float.parseFloat(totalBillString);
+        }
+        Log.v("Total Bill", Float.toString(totalBill));
         Log.v("Total Bill Entered", totalBillString);
 
         // get the number of splits entered
@@ -122,12 +172,13 @@ public class MainActivity extends AppCompatActivity implements CustomTipPercentD
         Log.v("Number of Splits Entered", numSplits);
 
         // get the tip percentage
-        String tipString = Float.toString(tipPercentValue);
+        String tipString = Integer.toString(tipPercentValue);
         Log.v("Tip Percent Entered", tipString);
-        tipPercentValue = Float.parseFloat(tipString);
+        tipPercentValue = Integer.parseInt(tipString);
+        float tip_calc = (float) tipPercentValue;
 
         // calculate total tip amount from bill total and tip percentage
-        double tipAmount = totalBill*(tipPercentValue/100);
+        double tipAmount = totalBill*(tip_calc/100);
         String output1 = formatter.format(tipAmount);
         Log.v("Tip Amount Calculated", output1);
 

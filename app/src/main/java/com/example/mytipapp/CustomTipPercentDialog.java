@@ -1,6 +1,5 @@
 package com.example.mytipapp;
 
-import android.app.Activity;
 import android.content.Context;
 import android.os.Bundle;
 import android.util.Log;
@@ -82,6 +81,6 @@ public class CustomTipPercentDialog extends DialogFragment implements View.OnCli
     }
 
     interface Communicator {
-        public void onDialogMessage (String message, String tip);
+        void onDialogMessage (String message, String tip);
     }
 }

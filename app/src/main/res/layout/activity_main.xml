@@ -5,12 +5,155 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/colorPrimary"
     tools:context=".MainActivity">
 
     <LinearLayout
         android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" >
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:gravity="center_horizontal"
+            android:orientation="vertical"
+            android:baselineAligned="false">
+
+            <TextView
+                android:id="@+id/tip_percentage_text"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_horizontal"
+                android:text="@string/tip_percentage_text"
+                android:textColor="@color/colorText"
+                android:textSize="24sp" />
+
+            <TextView
+                android:id="@+id/currentTip"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_horizontal"
+                android:layout_marginTop="8dp"
+                android:text="@string/current_tip"
+                android:textColor="@color/colorText"
+                android:textSize="40sp" />
+        </LinearLayout>
+
+    <TextView
+        android:id="@+id/people_split_text"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="16dp"
+        android:text="@string/people_split_text"
+        android:textColor="@color/colorText"
+        android:textSize="20sp" />
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp"
+        android:gravity="center_horizontal">
+
+        <Button
+            android:id="@+id/minus_split_button"
+            android:layout_width="40dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="16dp"
+            android:background="@color/colorButton"
+            android:onClick="updateBillSplit"
+            android:text="@string/minus_button_text" />
+
+        <TextView
+            android:id="@+id/people_split_number"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:text="@string/people_split_number"
+            android:textColor="@color/colorText"
+            android:textSize="24sp"/>
+
+        <Button
+            android:id="@+id/plus_split_button"
+            android:layout_width="40dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:background="@color/colorButton"
+            android:onClick="updateBillSplit"
+            android:text="@string/plus_button_text" />
+    </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="8dp"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_horizontal"
+                android:layout_marginBottom="8dp"
+                android:text="@string/select_tip_option"
+                android:textSize="20sp"
+                android:textColor="@color/colorText" />
+
+            <RadioGroup
+                android:id="@+id/tip_percentage_radio_group"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center_horizontal"
+                android:checkedButton="@+id/radioButton3"
+                android:orientation="horizontal">
+
+                <RadioButton
+                    android:id="@+id/radioButton1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:layout_margin="8dp"
+                    android:onClick="updateTipPercent"
+                    android:text="@string/tip_radio_button_1"
+                    android:textColor="@color/colorText"/>
+
+                <RadioButton
+                    android:id="@+id/radioButton2"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:layout_margin="8dp"
+                    android:onClick="updateTipPercent"
+                    android:text="@string/tip_radio_button_2"
+                    android:textColor="@color/colorText"/>
+
+                <RadioButton
+                    android:id="@+id/radioButton3"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:layout_margin="8dp"
+                    android:onClick="updateTipPercent"
+                    android:text="@string/tip_radio_button_3"
+                    android:textColor="@color/colorText"/>
+
+                <RadioButton
+                    android:id="@+id/radioButton4"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:layout_margin="8dp"
+                    android:onClick="showCustomTipDialog"
+                    android:text="@string/tip_radio_button_4"
+                    android:textColor="@color/colorText"/>
+            </RadioGroup>
+        </LinearLayout>
+
         <TextView
             android:id="@+id/bill_total_title"
             android:layout_width="wrap_content"
@@ -18,160 +161,45 @@
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="8dp"
             android:text="@string/tip_title_text"
+            android:textColor="@color/colorText"
             android:textSize="32sp"/>
 
-        <EditText
-            android:id="@+id/bill_total"
-            android:layout_width="wrap_content"
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
+            android:padding="16dp"
             android:gravity="center_horizontal"
-            android:layout_marginTop="8dp"
-            android:ems="10"
-            android:hint="@string/bill_amount_hint"
-            android:inputType="numberDecimal"
-            android:importantForAutofill="no" />
+            android:background="@drawable/bg_text_border_round_corners"
+            android:orientation="horizontal">
 
-        <TextView
-            android:id="@+id/people_split_text"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginTop="16dp"
-            android:text="@string/people_split_text"
-            tools:layout_editor_absoluteX="134dp" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textStyle="bold"
+                android:textSize="36sp"
+                android:text="@string/dollar_sign"
+                android:textColor="@android:color/black"
+                android:layout_gravity="center"/>
+
+            <EditText
+                android:id="@+id/bill_total"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="36sp"
+                android:textColor="@color/colorText"
+                android:gravity="center_horizontal"
+                android:ems="5"
+                android:hint="@string/bill_amount_hint"
+                android:inputType="numberDecimal"
+                android:imeOptions="actionDone"
+                android:importantForAutofill="no" />
+        </LinearLayout>
 
         <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center_horizontal">
-
-            <Button
-                android:id="@+id/minus_split_button"
-                android:layout_width="40dp"
-                android:layout_height="wrap_content"
-                android:layout_marginEnd="8dp"
-                android:onClick="updateBillSplit"
-                android:text="@string/minus_button_text" />
-
-            <TextView
-                android:id="@+id/people_split_number"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_vertical"
-                android:text="@string/people_split_number"
-                android:textSize="24sp"/>
-
-            <Button
-                android:id="@+id/plus_split_button"
-                android:layout_width="40dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
-                android:onClick="updateBillSplit"
-                android:text="@string/plus_button_text" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center_horizontal"
-            android:orientation="horizontal">
-
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_vertical"
-                android:layout_weight="1"
-                android:orientation="vertical">
-
-                <TextView
-                    android:id="@+id/tip_percentage_text"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_horizontal"
-                    android:text="@string/tip_percentage_text"
-                    android:textSize="16sp" />
-
-                <TextView
-                    android:id="@+id/currentTip"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_horizontal"
-                    android:layout_marginTop="8dp"
-                    android:text="@string/current_tip"
-                    android:textSize="40sp" />
-            </LinearLayout>
-
-            <TextView
-                android:layout_width="2dp"
-                android:layout_height="match_parent"
-                android:layout_marginTop="4dp"
-                android:layout_marginBottom="4dp"
-                android:background="@color/colorAccent" />
-
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_vertical"
-                android:orientation="vertical"
-                android:layout_weight="1"
-                android:layout_marginStart="12dp">
-
-                <RadioGroup
-                    android:id="@+id/tip_percentage_radio_group"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_horizontal"
-                    android:orientation="vertical">
-
-                    <RadioButton
-                        android:id="@+id/radioButton1"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:onClick="updateTipPercent"
-                        android:text="@string/tip_radio_button_1" />
-
-                    <RadioButton
-                        android:id="@+id/radioButton2"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:onClick="updateTipPercent"
-                        android:text="@string/tip_radio_button_2" />
-
-                    <RadioButton
-                        android:id="@+id/radioButton3"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:onClick="updateTipPercent"
-                        android:text="@string/tip_radio_button_3" />
-
-                    <RadioButton
-                        android:id="@+id/radioButton4"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:onClick="showCustomTipDialog"
-                        android:text="@string/tip_radio_button_4" />
-                </RadioGroup>
-            </LinearLayout>
-        </LinearLayout>
-
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginTop="24dp"
-            android:onClick="calculateSplitTipTotal"
-            android:text="@string/calculate_button_text"/>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:baselineAligned="false">
 
             <LinearLayout
                 android:layout_width="wrap_content"
@@ -186,7 +214,8 @@
                     android:layout_gravity="center_horizontal"
                     android:layout_marginTop="24dp"
                     android:text="@string/tip_split_amount_text"
-                    android:textSize="18sp"
+                    android:textSize="20sp"
+                    android:textColor="@color/colorText"
                     tools:layout_editor_absoluteX="169dp" />
 
                 <TextView
@@ -197,6 +226,7 @@
                     android:layout_marginTop="8dp"
                     android:text="@string/tip_split_amount_number"
                     android:textSize="24sp"
+                    android:textColor="@color/colorText"
                     tools:layout_editor_absoluteX="191dp" />
             </LinearLayout>
 
@@ -213,7 +243,8 @@
                     android:layout_gravity="center_horizontal"
                     android:layout_marginTop="24dp"
                     android:text="@string/tip_total_amount_text"
-                    android:textSize="18sp"
+                    android:textSize="20sp"
+                    android:textColor="@color/colorText"
                     tools:layout_editor_absoluteX="169dp" />
 
                 <TextView
@@ -224,6 +255,7 @@
                     android:layout_marginTop="8dp"
                     android:text="@string/tip_total_amount_number"
                     android:textSize="24sp"
+                    android:textColor="@color/colorText"
                     tools:layout_editor_absoluteX="191dp" />
             </LinearLayout>
         </LinearLayout>
@@ -235,7 +267,8 @@
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="16dp"
             android:text="@string/total_amount_text"
-            android:textSize="18sp"
+            android:textSize="20sp"
+            android:textColor="@color/colorAccent"
             tools:layout_editor_absoluteX="163dp" />
 
         <TextView
@@ -246,6 +279,7 @@
             android:layout_marginTop="8dp"
             android:text="@string/total_amount_number"
             android:textSize="32sp"
+            android:textColor="@color/colorAccent"
             tools:layout_editor_absoluteX="191dp" />
     </LinearLayout>
 </ScrollView>

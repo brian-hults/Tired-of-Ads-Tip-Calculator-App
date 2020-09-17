@@ -1,9 +1,10 @@
 <resources>
-    <string name="app_name">My Tip App</string>
+    <string name="app_name">Tired of Ads Tip Calculator</string>
 
     // String for Bill Total Title
     <string name="tip_title_text">Bill Total</string>
     <string name="bill_amount_hint">0.00</string>
+    <string name="dollar_sign">$</string>
 
     // Strings for Splitting between People
     <string name="people_split_text">Split Number of People</string>
@@ -12,7 +13,8 @@
     <string name="plus_button_text">+</string>
 
     // Strings for Tip Percentage choices
-    <string name="tip_percentage_text">Current Tip\nPercentage</string>
+    <string name="tip_percentage_text">Current Tip</string>
+    <string name="select_tip_option">Select Tip</string>
     <string name="current_tip">0%</string>
     <string name="tip_radio_button_1">15%</string>
     <string name="tip_radio_button_2">18%</string>
@@ -20,15 +22,15 @@
     <string name="tip_radio_button_4">Other</string>
 
     // Dialog Strings
-    <string name="ok_button_text">Ok</string>
+    <string name="ok_button_text">OK</string>
     <string name="cancel_button_text">Cancel</string>
 
     // Strings for Calculate Button, Tip Amount, and Total Amount
     <string name="calculate_button_text">Calculate Tip</string>
     <string name="tip_total_amount_text">Total Tip Amount</string>
-    <string name="tip_total_amount_number">0.00</string>
+    <string name="tip_total_amount_number">$0.00</string>
     <string name="tip_split_amount_text">Split Tip Amount</string>
-    <string name="tip_split_amount_number">0.00</string>
+    <string name="tip_split_amount_number">$0.00</string>
     <string name="total_amount_text">Total Amount</string>
-    <string name="total_amount_number">0.00</string>
+    <string name="total_amount_number">$0.00</string>
 </resources>
