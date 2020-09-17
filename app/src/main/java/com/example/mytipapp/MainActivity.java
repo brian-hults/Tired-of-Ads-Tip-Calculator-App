@@ -102,21 +102,18 @@ public class MainActivity extends AppCompatActivity implements CustomTipPercentD
             newTip = tipString + "%";
             Log.v("radioButtons", "15% Tip choice was detected");
             currentTipView.setText(newTip);
-            //calculateSplitTipTotal(totalBillAmount);
         } else if (tip18Percent.isChecked()) {
             tipPercentValue = 18;
             tipString = Integer.toString(tipPercentValue);
             newTip = tipString + "%";
             Log.v("radioButtons", "18% Tip choice was detected");
             currentTipView.setText(newTip);
-            //calculateSplitTipTotal(totalBillAmount);
         } else if (tip20Percent.isChecked()) {
             tipPercentValue = 20;
             tipString = Integer.toString(tipPercentValue);
             newTip = tipString + "%";
             Log.v("radioButtons", "20% Tip choice was detected");
             currentTipView.setText(newTip);
-            //calculateSplitTipTotal(totalBillAmount);
         } else if (tipOtherPercent.isChecked()) {
             showCustomTipDialog(view);
         }
