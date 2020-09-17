@@ -120,6 +120,7 @@
                     android:layout_margin="8dp"
                     android:onClick="updateTipPercent"
                     android:text="@string/tip_radio_button_1"
+                    android:textSize="18sp"
                     android:textColor="@color/colorText"/>
 
                 <RadioButton
@@ -130,6 +131,7 @@
                     android:layout_margin="8dp"
                     android:onClick="updateTipPercent"
                     android:text="@string/tip_radio_button_2"
+                    android:textSize="18sp"
                     android:textColor="@color/colorText"/>
 
                 <RadioButton
@@ -140,6 +142,7 @@
                     android:layout_margin="8dp"
                     android:onClick="updateTipPercent"
                     android:text="@string/tip_radio_button_3"
+                    android:textSize="18sp"
                     android:textColor="@color/colorText"/>
 
                 <RadioButton
@@ -150,6 +153,7 @@
                     android:layout_margin="8dp"
                     android:onClick="showCustomTipDialog"
                     android:text="@string/tip_radio_button_4"
+                    android:textSize="18sp"
                     android:textColor="@color/colorText"/>
             </RadioGroup>
         </LinearLayout>
