@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Tired of Ads Tip Calculator</string>
+    <string name="app_name">Tip Calculator - Tired of Ads</string>
 
     // String for Bill Total Title
     <string name="tip_title_text">Bill Total</string>
